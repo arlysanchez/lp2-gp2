@@ -25,7 +25,7 @@ public class ProductEntity {
     private String image;
     private BigDecimal price;
     
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
     private LocalDateTime dateCreated;
@@ -35,20 +35,6 @@ public class ProductEntity {
     public ProductEntity() {
         this.setCode(UUID.randomUUID().toString());
     }
-
-    public ProductEntity(Integer id, String code, String name, String description, String image, BigDecimal price, UserEntity userEntity, LocalDateTime dateCreated, LocalDateTime dateUpdated) {
-        this.id = id;
-        this.code = code;
-        this.name = name;
-        this.description = description;
-        this.image = image;
-        this.price = price;
-        this.userEntity = userEntity;
-        this.dateCreated = dateCreated;
-        this.dateUpdated = dateUpdated;
-    }
-
-    
 
     public Integer getId() {
         return id;

@@ -13,6 +13,6 @@ import upeu.edu.pe.project_lp2_gp2.infrastructure.entity.UserEntity;
  * @author LAB-2
  */
 public interface ProductCrudRepository extends CrudRepository<ProductEntity, Integer>{
-       Iterable<ProductEntity> findByUserEntity(UserEntity user);
+       Iterable<ProductEntity> findByUserEntity(UserEntity userEntity);
  
 }
