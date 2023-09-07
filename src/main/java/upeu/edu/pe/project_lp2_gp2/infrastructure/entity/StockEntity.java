@@ -17,9 +17,9 @@ public class StockEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String descripcion;
-    private String entradas;
-    private String salidas;
-    private String balance;
+    private Integer entradas;
+    private Integer salidas;
+    private Integer balance;
     @ManyToOne
     @JoinColumn(name = "product_id")
     private ProductEntity productEntity;
@@ -27,13 +27,16 @@ public class StockEntity {
     public StockEntity() {
     }
 
-    public StockEntity(Integer id, String descripcion, String entradas, String salidas, String balance) {
+    public StockEntity(Integer id, String descripcion, Integer entradas, Integer salidas, Integer balance, ProductEntity productEntity) {
         this.id = id;
         this.descripcion = descripcion;
         this.entradas = entradas;
         this.salidas = salidas;
         this.balance = balance;
+        this.productEntity = productEntity;
     }
+
+    
 
     public Integer getId() {
         return id;
@@ -51,29 +54,31 @@ public class StockEntity {
         this.descripcion = descripcion;
     }
 
-    public String getEntradas() {
+    public Integer getEntradas() {
         return entradas;
     }
 
-    public void setEntradas(String entradas) {
+    public void setEntradas(Integer entradas) {
         this.entradas = entradas;
     }
 
-    public String getSalidas() {
+    public Integer getSalidas() {
         return salidas;
     }
 
-    public void setSalidas(String salidas) {
+    public void setSalidas(Integer salidas) {
         this.salidas = salidas;
     }
 
-    public String getBalance() {
+    public Integer getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(Integer balance) {
         this.balance = balance;
     }
+
+    
 
     public ProductEntity getProductEntity() {
         return productEntity;

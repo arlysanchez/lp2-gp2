@@ -4,6 +4,7 @@
  */
 package upeu.edu.pe.project_lp2_gp2.infrastructure.controller;
 
+import java.io.IOException;
 import org.slf4j.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import upeu.edu.pe.project_lp2_gp2.app.service.ProductService;
 import upeu.edu.pe.project_lp2_gp2.infrastructure.entity.ProductEntity;
 import upeu.edu.pe.project_lp2_gp2.infrastructure.entity.UserEntity;
@@ -36,9 +39,9 @@ private final Logger log = LoggerFactory.getLogger(ProductController.class);
     }
     //guardar producto
      @PostMapping("/save-product")
-    public String saveProduct(ProductEntity product) {
+    public String saveProduct(ProductEntity product,@RequestParam("img")MultipartFile multipartFile) throws IOException {
         log.info("Nombre de producto: {}", product);
-        productService.saveProduct(product);
+        productService.saveProduct(product, multipartFile);
         return "admin/products/create";
         //return "redirect:/admin";
     }

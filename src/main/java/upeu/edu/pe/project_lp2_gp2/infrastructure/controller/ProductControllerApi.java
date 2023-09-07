@@ -34,7 +34,8 @@ public class ProductControllerApi {
     //crear product
     @PostMapping("/save-product")
     public String saveProduct(@RequestBody ProductEntity productEntity){
-        return productService.saveProduct(productEntity).toString();
+       // return productService.saveProduct(productEntity).toString();
+       return null;
     }
      //ver productos
     @GetMapping("/show")
@@ -57,7 +58,8 @@ public class ProductControllerApi {
         productActual.setName(product.getName());
         productActual.setPrice(product.getPrice());
         productActual.setUserEntity(product.getUserEntity());
-        return productService.saveProduct(productActual);
+       // return productService.saveProduct(productActual);
+       return null;
        // log.info("Product obtenido: {}", product);
         //model.addAttribute("product", product);
         //return "admin/products/edit";
