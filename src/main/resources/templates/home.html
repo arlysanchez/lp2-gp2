@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert ="~{user/template_user::head}"></head>
+    <body>
+    <div th:insert ="~{user/template_user::header}"></div>
+   <div class="container">
+            <header class="jumbotron my-4">
+                <h1 class="display-3">Bienvenido a tu tienda en linea!!! </h1> 
+            </header>
+
+            <div class="row text-center">
+                <div class="col-lg-3 col-md-6 mb-4" th:each="product: ${products}">
+                    <div class="card h-100">
+                        <img class="card-img-top" th:src="@{images/{img} (img = ${product.image})}" alt="alt"/>
+                        <div class="card-body">
+                            <p class="card-text"th:text="${product.name}"> Nombre del producto</p>  
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-success">Ver Producto</a>     
+                        </div>
+                    </div> 
+                </div>
+            </div>
+
+
+        </div>
+    
+    </body>
+    <div class="footer" th:insert ="~{user/template_user::footer}"></div>
+</html>
+<style>
+     .body{
+            position: relative;
+        }
+        .footer{
+            position: absolute;
+            bottom:0px;
+            height: 60px;
+            width: 100%;
+        }
+        
+</style>
