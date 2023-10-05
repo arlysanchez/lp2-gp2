@@ -23,7 +23,7 @@ import upeu.edu.pe.project_lp2_gp2.infrastructure.entity.UserEntity;
  * @author LAB-2
  */
 @Controller
-@RequestMapping("admin/products")
+@RequestMapping("/admin/products")
 public class ProductController {
     private final ProductService productService;
 private final Logger log = LoggerFactory.getLogger(ProductController.class);    

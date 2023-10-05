@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert ="~{admin/template_admin::head_admin}"></head>
+    <body>
+        <div th:insert ="~{admin/template_admin::header_admin}"></div>
+        <div class="container">
+            <header class="jumbotron my-4">
+                <h1 class="display-3">Bienvenido a tu tienda en linea!!! </h1> 
+            </header>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Invetario</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="producto: ${products}">
+                        <td th:text="${producto.name}"></td>
+                        <td th:text="${producto.description}"></td>
+                        <td th:text="${producto.price}"></td>
+                        <td><a class="btn btn-warning">Editar</a></td>
+                        <td><a class="btn btn-primary">Inventario</a></td>
+                        <td><a class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+
+        </div>
+
+    </body>
+    <div class="footer" th:insert ="~{admin/template_admin::footer_admin}"></div>
+</html>
+<style>
+    .body{
+        position: relative;
+    }
+    .footer{
+        position: absolute;
+        bottom:0px;
+        height: 60px;
+        width: 100%;
+    }
+
+</style>
