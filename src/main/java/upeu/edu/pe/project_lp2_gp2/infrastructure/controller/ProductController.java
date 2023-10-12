@@ -42,8 +42,8 @@ private final Logger log = LoggerFactory.getLogger(ProductController.class);
     public String saveProduct(ProductEntity product,@RequestParam("img")MultipartFile multipartFile) throws IOException {
         log.info("Nombre de producto: {}", product);
         productService.saveProduct(product, multipartFile);
-        return "admin/products/create";
-        //return "redirect:/admin";
+        //return "admin/products/create";
+        return "redirect:/admin";
     }
     
     @GetMapping("/show")
@@ -68,7 +68,7 @@ private final Logger log = LoggerFactory.getLogger(ProductController.class);
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable Integer id){
         productService.deleteProductById(id);
-        return "redirect:/admin/products/show";
+        return "redirect:/admin";
     }
         
     

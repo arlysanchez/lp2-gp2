@@ -8,6 +8,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <div th:insert ="~{admin/template_admin::header_admin}"></div>
         <div class="container">
+            <ul style="width: fit-content; margin-left: auto; margin-top: 20px;">
+                <a class="btn btn-primary"  th:href="@{/admin/products/create}"> Crear producto </a>
+
+            </ul>
             <header class="jumbotron my-4">
                 <h1 class="display-3">Bienvenido a tu tienda en linea!!! </h1> 
             </header>
@@ -28,9 +32,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <td th:text="${producto.name}"></td>
                         <td th:text="${producto.description}"></td>
                         <td th:text="${producto.price}"></td>
-                        <td><a class="btn btn-warning">Editar</a></td>
+                        <td> <a class="btn btn-warning" th:href="@{/admin/products/edit/{id} (id = ${producto.id}) }">Editar</a></td>
+                        <td> <a class="btn btn-danger"th:href="@{/admin/products/delete/{id} (id = ${producto.id}) }">Eliminar</a></td>
+
                         <td><a class="btn btn-primary">Inventario</a></td>
-                        <td><a class="btn btn-danger">Eliminar</a></td>
                     </tr>
                 </tbody>
 
