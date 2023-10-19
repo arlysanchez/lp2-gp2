@@ -5,6 +5,7 @@
 package upeu.edu.pe.project_lp2_gp2.infrastructure.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +23,9 @@ import upeu.edu.pe.project_lp2_gp2.infrastructure.entity.UserEntity;
  *
  * @author LAB-2
  */
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/v1/product/")
+@RequestMapping("api")
 public class ProductControllerApi {
     
    private final ProductService productService;
@@ -32,25 +34,25 @@ public class ProductControllerApi {
         this.productService = productService;
     }
     //crear product
-    @PostMapping("/save-product")
+    @PostMapping("/product")
     public String saveProduct(@RequestBody ProductEntity productEntity){
        // return productService.saveProduct(productEntity).toString();
        return null;
     }
      //ver productos
-    @GetMapping("/show")
+    @GetMapping("/product")
     public Iterable <ProductEntity> showProduct(){
         UserEntity user = new UserEntity();
         user.setId(1);
         return productService.getProductsByUser(user);
     }
     //buscar producto por Id
-    @GetMapping("/show/{id}")
+    @GetMapping("/product/{id}")
     public ProductEntity show(@PathVariable Integer id){
        return productService.getProductById(id);
     }
     //editar un product
-   @PutMapping("/edit/{id}")
+   @PutMapping("/product/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public ProductEntity editProduct(@RequestBody ProductEntity product, @PathVariable Integer id) {
         ProductEntity productActual = productService.getProductById(id);
@@ -65,7 +67,7 @@ public class ProductControllerApi {
         //return "admin/products/edit";
     }
     //eliminar un product
-     @DeleteMapping("/delete/{id}")
+     @DeleteMapping("/product/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteProduct(@PathVariable Integer id) {
         productService.deleteProductById(id);
