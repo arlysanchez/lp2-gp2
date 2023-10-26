@@ -4,6 +4,7 @@
  */
 package upeu.edu.pe.project_lp2_gp2.infrastructure.controller;
 
+import java.io.IOException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,50 +28,54 @@ import upeu.edu.pe.project_lp2_gp2.infrastructure.entity.UserEntity;
 @RestController
 @RequestMapping("api")
 public class ProductControllerApi {
-    
-   private final ProductService productService;
+
+    private final ProductService productService;
 
     public ProductControllerApi(ProductService productService) {
         this.productService = productService;
     }
+
     //crear product
     @PostMapping("/product")
-    public String saveProduct(@RequestBody ProductEntity productEntity){
-       // return productService.saveProduct(productEntity).toString();
-       return null;
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProductEntity createProduct(@RequestBody ProductEntity product) throws IOException {
+        return productService.saveProductApi(product);
     }
-     //ver productos
+    //ver productos
+
     @GetMapping("/product")
-    public Iterable <ProductEntity> showProduct(){
+    public Iterable<ProductEntity> showProduct() {
         UserEntity user = new UserEntity();
         user.setId(1);
         return productService.getProductsByUser(user);
     }
+
     //buscar producto por Id
     @GetMapping("/product/{id}")
-    public ProductEntity show(@PathVariable Integer id){
-       return productService.getProductById(id);
+    public ProductEntity show(@PathVariable Integer id) {
+        return productService.getProductById(id);
     }
+
     //editar un product
-   @PutMapping("/product/{id}")
+    @PutMapping("/product/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductEntity editProduct(@RequestBody ProductEntity product, @PathVariable Integer id) {
+    public ProductEntity editProduct(@RequestBody ProductEntity product, @PathVariable Integer id) throws IOException {
         ProductEntity productActual = productService.getProductById(id);
         productActual.setDescription(product.getDescription());
         productActual.setName(product.getName());
         productActual.setPrice(product.getPrice());
         productActual.setUserEntity(product.getUserEntity());
-       // return productService.saveProduct(productActual);
-       return null;
-       // log.info("Product obtenido: {}", product);
+        return productService.saveProductApi(productActual);
+        // log.info("Product obtenido: {}", product);
         //model.addAttribute("product", product);
         //return "admin/products/edit";
     }
+
     //eliminar un product
-     @DeleteMapping("/product/{id}")
+    @DeleteMapping("/product/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteProduct(@PathVariable Integer id) {
         productService.deleteProductById(id);
-       // return "redirect:/admin/products/show";
+        // return "redirect:/admin/products/show";
     }
 }
