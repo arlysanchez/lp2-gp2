@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert = "~{user/template_user::head}"></head>
+
+<body>
+
+  <!-- Navigation -->
+  <div th:insert = "~{user/template_user::header}"></div>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Blog Post -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+           <div class="col-lg-9">
+             <div class="card-body">
+              <h5 class="card-title">
+                DATOS ORDEN
+              </h5>
+              <h6 th:text="'Nombre: '+ ${user.firtName} + ' '+ ${user.lastName}">Nombre: </h6>
+              <h6  th:text="'Correo: '+ ${user.email}">Correo: </h6>
+              <h6 th:text="'Dirección: '+ ${user.address}">Dirección</h6>
+
+              <h5 class="card-title">
+                PRODUCTOS
+              </h5>
+              <div class="alert alert-light" role="alert">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Producto</th>
+                      <th scope="col">Precio</th>
+                      <th scope="col">Cantidad</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr th:each="item:${cart} ">
+                     <td th:text="${item.nameProduct}">Nombre</td>
+                     <td th:text="${item.price}">Precio</td>
+                     <td th:text="${item.quantity}">Cantidad</td>
+                     <td th:text="${item.getTotalPriceItem()}">Total</td>
+
+                   </tr>
+                 </tbody>
+               </table>
+             </div>
+
+           </div>
+         </div>
+
+
+         <div class="col-lg-3">
+          <h2 class="card-title">Resumen Orden</h2>
+
+          <ul class="list-group">
+            <li class="list-group-item"><h5 th:text="${total}"> Total:</h5></li>
+            <a th:href="@{/user/order/create-order}" class="btn btn-dark">Generar</a>
+          </ul>
+        </div>
+		</div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <div th:insert="~{user/template_user::footer}"></div>
+
+</body>
+
+</html>

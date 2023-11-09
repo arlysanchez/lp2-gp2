@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:insert = "~{admin/template_admin::head_admin}"></head>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <body>
+
+        <!-- Navigation -->
+        <div th:insert = "~{admin/template_admin::header_admin}"></div>
+
+        <!-- Page Content -->
+        <div class="container">
+
+            <h2>Añadir</h2>
+            <form class="form-horizontal" th:action="@{/admin/products/stock/save-unit-product}" method="post">
+                <input type="hidden" name="idproduct" th:value="${idproduct}">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="unitIn">Cantidad:</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="entradas"
+                               name="entradas" placeholder="Ingrese la cantidad del producto"
+                               required autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-saved"></span> Guardar
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+        <!-- /.container -->
+
+        <!-- Footer -->
+        <div th:insert="~{admin/template_admin::footer_admin}"></div>
+    </body>
+
+</html>

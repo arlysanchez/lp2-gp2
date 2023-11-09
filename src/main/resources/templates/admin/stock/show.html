@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:insert = "~{admin/template_admin::head_admin}"></head>
+     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <body>
+        <div th:insert = "~{admin/template_admin::header_admin}"></div>
+
+        <!-- Page Content -->
+        <div class="container">
+
+            <a class="btn btn-primary" th:href="@{/admin/products/stock/create-unit-product/{id}  (id = ${idproduct}) }" > Añadir unidades</a>
+            <h2>Inventario</h2>
+            <table class="table">
+                <thead>
+                <th scope="col">Entrada/Unidades</th>
+                <th scope="col">Salida/Unidades</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Saldo/Unidades</th>	
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="stock:${stocks}">
+                        <td th:text = "${stock.entradas}"></td>
+                        <td th:text = "${stock.salidas}"></td>
+                        <td th:text = "${stock.descripcion}"></td>
+                        <td th:text = "${stock.balance}"></td>
+                    </tr>       
+                </tbody>
+            </table>
+
+        </div>
+        <!-- /.container -->
+
+        <!-- Footer -->
+        <div th:insert="~{admin/template_admin::footer_admin}"></div>
+
+    </body>
+
+</html>

@@ -71,15 +71,8 @@ public class ProductService {
 
     }
 
-    public void deleteProductById(Integer id) {
-        ProductEntity p = new ProductEntity();
-        p = productRepository.getProductById(id);
-
-        if (!p.getImage().equals("default.jpg")) {
-            uploadFile.delete(p.getImage());
-        }
-
-        productRepository.deleteProductById(id);
+   public void deleteProductById(Integer id){
+          productRepository.deleteProductById(id);
     }
 
     public ProductEntity saveProductApi(ProductEntity product) throws IOException {

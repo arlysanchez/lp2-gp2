@@ -34,8 +34,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <td th:text="${producto.price}"></td>
                         <td> <a class="btn btn-warning" th:href="@{/admin/products/edit/{id} (id = ${producto.id}) }">Editar</a></td>
                         <td> <a class="btn btn-danger"th:href="@{/admin/products/delete/{id} (id = ${producto.id}) }">Eliminar</a></td>
+                        <td> <a class="btn btn-primary" th:href="@{/admin/products/stock/{id} (id = ${producto.id}) }">Inventario</a></td>
 
-                        <td><a class="btn btn-primary">Inventario</a></td>
                     </tr>
                 </tbody>
 
