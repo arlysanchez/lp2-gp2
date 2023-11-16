@@ -4,6 +4,7 @@
  */
 package upeu.edu.pe.project_lp2_gp2.infrastructure.controller;
 
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import org.slf4j.*;
 import org.springframework.stereotype.Controller;
@@ -39,9 +40,9 @@ private final Logger log = LoggerFactory.getLogger(ProductController.class);
     }
     //guardar producto
      @PostMapping("/save-product")
-    public String saveProduct(ProductEntity product,@RequestParam("img")MultipartFile multipartFile) throws IOException {
+    public String saveProduct(ProductEntity product,@RequestParam("img")MultipartFile multipartFile, HttpSession httpSession) throws IOException {
         log.info("Nombre de producto: {}", product);
-        productService.saveProduct(product, multipartFile);
+        productService.saveProduct(product, multipartFile,httpSession);
         //return "admin/products/create";
         return "redirect:/admin";
     }

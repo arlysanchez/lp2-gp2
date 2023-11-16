@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.context.WebApplicationContext;
 import upeu.edu.pe.project_lp2_gp2.app.repository.OrderProductRepository;
 import upeu.edu.pe.project_lp2_gp2.app.repository.OrderRepository;
@@ -15,9 +16,12 @@ import upeu.edu.pe.project_lp2_gp2.app.repository.ProductRepository;
 import upeu.edu.pe.project_lp2_gp2.app.repository.StockRepository;
 import upeu.edu.pe.project_lp2_gp2.app.repository.UserRepository;
 import upeu.edu.pe.project_lp2_gp2.app.service.CartService;
+import upeu.edu.pe.project_lp2_gp2.app.service.LoginService;
+import upeu.edu.pe.project_lp2_gp2.app.service.LogoutService;
 import upeu.edu.pe.project_lp2_gp2.app.service.OrderProductService;
 import upeu.edu.pe.project_lp2_gp2.app.service.OrderService;
 import upeu.edu.pe.project_lp2_gp2.app.service.ProductService;
+import upeu.edu.pe.project_lp2_gp2.app.service.RegistrationService;
 import upeu.edu.pe.project_lp2_gp2.app.service.StockService;
 import upeu.edu.pe.project_lp2_gp2.app.service.UploadFile;
 import upeu.edu.pe.project_lp2_gp2.app.service.UserServices;
@@ -67,5 +71,18 @@ public class BeanConfiguration {
     public UserServices userService(UserRepository userRepository){
         return  new UserServices(userRepository);
     }
+    @Bean
+    public LoginService loginService(UserServices userService){
+        return new LoginService(userService);
+    }
+    @Bean
+    public LogoutService logoutService(){
+        return  new LogoutService();
+    } 
+    @Bean
+    public RegistrationService registrationService(UserServices userService, PasswordEncoder passwordEncoder){
+        return  new RegistrationService(userService, passwordEncoder);
+    }
+    
     
 }

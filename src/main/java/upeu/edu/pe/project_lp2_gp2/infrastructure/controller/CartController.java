@@ -4,6 +4,7 @@
  */
 package upeu.edu.pe.project_lp2_gp2.infrastructure.controller;
 
+import jakarta.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,10 +43,11 @@ public class CartController {
         cartService.getItemCarts().forEach(itemCart -> log.info("Item cart {}",itemCart));
     }
      @GetMapping("/get-cart")
-    public String getCart(Model model){
+    public String getCart(Model model,HttpSession httpSession){
        showCart();
        model.addAttribute("cart", cartService.getItemCarts());
        model.addAttribute("total", cartService.getTotalCart());
+       model.addAttribute("id", httpSession.getAttribute("iduser").toString());
        return "user/cart/cart";
     }
     @GetMapping("/delete-item-cart/{id}")

@@ -26,7 +26,35 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" th:href="@{/user/cart/get-cart}">Carrito</a></li>
+                                <li><a class="dropdown-item" th:href="@{/login}">Login</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-light" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        </div>
+        <div th:fragment ="userlogger">
+            <nav class="navbar navbar-expand-lg bg-success ">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/home}">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav" style="width: fit-content; margin-left: auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${nombre}">
+                                
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" th:href="@{/user/cart/get-cart}">Carrito</a></li>
                                 <li><a class="dropdown-item" href="#">Mis productos</a></li>
+                                <li><a class="dropdown-item" th:href="@{/logout}">salir</a></li>
                             </ul>
                         </li>
                     </ul>

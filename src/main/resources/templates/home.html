@@ -6,7 +6,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:insert ="~{user/template_user::head}"></head>
     <body>
-        <div th:insert ="~{user/template_user::header}"></div>
+        <div th:insert ="~{user/template_user::header}" th:if="${id==null}"></div>
+        <div th:insert ="~{user/template_user::userlogger}" th:unless="${id==null}"></div>
         <div class="container">
             <header class="jumbotron my-4">
                 <h1 class="display-3">Bienvenido a tu tienda en linea!!! </h1> 

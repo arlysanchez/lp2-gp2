@@ -1,60 +1,60 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert = "~{user/template_user::head}"></head>
+    <head th:insert = "~{user/template_user::head}"></head>
 
-<body>
+    <body>
 
-  <!-- Navigation -->
-  <div th:insert = "~{user/template_user::header}"></div>
+        <!-- Navigation -->
+        <div th:insert ="~{user/template_user::header}" th:if="${id==null}"></div>
+        <div th:insert ="~{user/template_user::userlogger}" th:unless="${id==null}"></div>
+        <!-- Page Content -->
+        <div class="container">
 
-    <!-- Page Content -->
-    <div class="container">
+            <!-- Blog Post -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Producto</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="item:${cart}">
+                                        <td th:text="${item.nameProduct}">Nombre</td>
+                                        <td th:text="${item.price}">Precio</td>
+                                        <td th:text="${item.quantity}">Cantidad</td>
+                                        <td th:text="${item.getTotalPriceItem()}">Total</td>
+                                        <td><a th:href="@{/user/cart/delete-item-cart/{id} (id = ${item.idProduct})}" class="btn btn-danger">Quitar</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-      <!-- Blog Post -->
-      <div class="card mb-4">
-        <div class="card-body">
-          <div class="row">
-           <div class="col-lg-9">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Producto</th>
-                  <th scope="col">Precio</th>
-                  <th scope="col">Cantidad</th>
-                  <th scope="col">Total</th>
-                  <th scope="col">Acción</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr th:each="item:${cart}">
-                  <td th:text="${item.nameProduct}">Nombre</td>
-                  <td th:text="${item.price}">Precio</td>
-                  <td th:text="${item.quantity}">Cantidad</td>
-                  <td th:text="${item.getTotalPriceItem()}">Total</td>
-                  <td><a th:href="@{/user/cart/delete-item-cart/{id} (id = ${item.idProduct})}" class="btn btn-danger">Quitar</a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                        <div class="col-lg-3">
+                            <h2 class="card-title">SUBTOTAL</h2>
 
-          <div class="col-lg-3">
-            <h2 class="card-title">SUBTOTAL</h2>
-
-            <ul class="list-group">
-              <li class="list-group-item"><h5 th:text="${total}"></h5></li>
-              <a th:href="@{/user/order/sumary-order}" class="btn btn-dark">Ver Orden</a>
-            </ul>
-          </div>
-		  </div>
+                            <ul class="list-group">
+                                <li class="list-group-item"><h5 th:text="${total}"></h5></li>
+                                <a th:href="@{/user/order/sumary-order}" class="btn btn-dark">Ver Orden</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <!-- /.container -->
+        <!-- /.container -->
 
-    <!-- Footer -->
-  <div th:insert="~{user/template_user::footer}"></div>
+        <!-- Footer -->
+        <div th:insert="~{user/template_user::footer}"></div>
 
-  </body>
+    </body>
 
-  </html>
+</html>
