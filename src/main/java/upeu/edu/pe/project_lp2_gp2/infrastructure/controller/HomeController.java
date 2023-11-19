@@ -53,7 +53,12 @@ public class HomeController {
         log.info("Id product: {}", id);
         log.info("stock size: {}", stocks.size());
         log.info("stock : {}", stocks);
-        Integer lastBalance = stocks.get(stocks.size() - 1).getBalance();
+        Integer lastBalance = 0;
+
+        if (!stocks.isEmpty()) {
+            StockEntity lastStock = stocks.get(stocks.size() - 1);
+            lastBalance = lastStock.getBalance();
+        }
 
         model.addAttribute("product", productService.getProductById(id));
         model.addAttribute("stock", lastBalance);
